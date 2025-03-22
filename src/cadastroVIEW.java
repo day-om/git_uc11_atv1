@@ -165,7 +165,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
             
             prod = new ProdutosDAO(dao.getConnection());
 
-            resposta = prod.cadastrarProduto(produto);  // Tentando cadastrar o produto
+            resposta = prod.cadastrarProduto(produto); 
 
             if (resposta == 1) {
                 JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso");
