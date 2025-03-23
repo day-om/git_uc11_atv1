@@ -185,7 +185,35 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-       
+        int id = Integer.parseInt(id_produto_venda.getText());
+        
+        conectaDAO dao = new conectaDAO(); 
+        ProdutosDAO prod = null;
+        boolean ct;
+        int resposta;
+
+        ct = dao.conectar(); 
+        if (ct == false) {
+            JOptionPane.showMessageDialog(null, "Erro de conexão");
+            return;
+        } else {
+            
+            prod = new ProdutosDAO(dao.getConnection());
+
+            resposta = prod.venderProduto(id); 
+
+            if (resposta == 1) {
+                JOptionPane.showMessageDialog(null, "Status atualizado com sucesso");
+            } else if (resposta == 1062) {
+                JOptionPane.showMessageDialog(null, "Erro no cadastro");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar inserir dados");
+            }
+
+            dao.desconectar(); 
+               
+        listarProdutos();
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
